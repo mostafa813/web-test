@@ -9,12 +9,13 @@ os.environ['PATH'] += r"C:\chromedriver-win64"
 driver = webdriver.Chrome()
 actions = ActionChains(driver)
 
-def login_user():
+def login_user(phoneNumber,userName):
     driver.implicitly_wait(5)
     driver.get("https://hnaya.ir/")
-    driver.set_window_size(400,890)
+    driver.set_window_size(400,1050)
     sleep(3)
-    driver.find_element("xpath","(//p[@class='title2 pt-1 '])[3]").click()
+    profile_page = driver.find_element("xpath","(//p[@class='title2 pt-1 '])[3]")
+    profile_page.click()
     sleep(7)
     phone_input = driver.find_element("tag name","input")
     phone_input.click()
@@ -22,10 +23,10 @@ def login_user():
     phone_input.send_keys(Keys.BACKSPACE)
     phone_input.send_keys(Keys.BACKSPACE)
     sleep(2)
-    phone_number= "89155608056"
-    phone_input.send_keys(phone_number)
+    phone_input.send_keys(phoneNumber)
     sleep(1)
-    driver.find_element("tag name","h6").click()
+    send_code_btn = driver.find_element("tag name","h6")
+    send_code_btn.click()
     sleep(1)
     driver.find_element("xpath","//h6[text()='استمر']").click()
     sleep(2)
@@ -35,18 +36,20 @@ def login_user():
     driver.find_element("xpath","(//input[@type='tel'])[4]").send_keys("1")
     sleep(6)
     dom = driver.page_source
-    assert "یوزر تست وب 12 مهر" in dom
+    assert userName in dom
 
 
 
-def login_tashakol():
+def login_tashakol(phoneNumber,userName):
     driver.implicitly_wait(5)
     driver.get("https://hnaya.ir/")
-    driver.set_window_size(400,890)
+    driver.set_window_size(400,1050)
     sleep(3)
-    driver.find_element("xpath","(//p[@class='title2 pt-1 '])[3]").click()
+    profile_page = driver.find_element("xpath","(//p[@class='title2 pt-1 '])[3]")
+    profile_page.click()
     sleep(7)
-    driver.find_element("xpath","//button[text()='مجموعة']").click()
+    tashakol_select_btn = driver.find_element("xpath","//button[text()='مجموعة']")
+    tashakol_select_btn.click()
     sleep(1)
     phone_input = driver.find_element("tag name","input")
     phone_input.click()
@@ -54,10 +57,10 @@ def login_tashakol():
     phone_input.send_keys(Keys.BACKSPACE)
     phone_input.send_keys(Keys.BACKSPACE)
     sleep(2)
-    phone_number= "89196549827"
-    phone_input.send_keys(phone_number)
+    phone_input.send_keys(phoneNumber)
     sleep(1)
-    driver.find_element("tag name","h6").click()
+    send_code_btn = driver.find_element("tag name","h6")
+    send_code_btn.click()
     sleep(1)
     driver.find_element("xpath","//h6[text()='استمر']").click()
     sleep(2)
@@ -67,15 +70,16 @@ def login_tashakol():
     driver.find_element("xpath","(//input[@type='tel'])[4]").send_keys("1")
     sleep(6)
     dom = driver.page_source
-    assert "تشکل تست وب 12 مهر" in dom
+    assert userName in dom
 
 
-def sign_in_user():
+def sign_in_user(phoneNumber,userName):
     driver.implicitly_wait(5)
     driver.get("https://hnaya.ir/")
-    driver.set_window_size(400, 890)
+    driver.set_window_size(400, 1050)
     sleep(3)
-    driver.find_element("xpath", "(//p[@class='title2 pt-1 '])[3]").click()
+    profile_page = driver.find_element("xpath","(//p[@class='title2 pt-1 '])[3]")
+    profile_page.click()
     sleep(7)
     phone_input = driver.find_element("tag name", "input")
     phone_input.click()
@@ -83,10 +87,10 @@ def sign_in_user():
     phone_input.send_keys(Keys.BACKSPACE)
     phone_input.send_keys(Keys.BACKSPACE)
     sleep(2)
-    phone_number = "89155608056"
-    phone_input.send_keys(phone_number)
+    phone_input.send_keys(phoneNumber)
     sleep(1)
-    driver.find_element("tag name", "h6").click()
+    send_code_btn = driver.find_element("tag name","h6")
+    send_code_btn.click()
     sleep(1)
     driver.find_element("xpath", "//h6[text()='استمر']").click()
     sleep(2)
@@ -95,23 +99,25 @@ def sign_in_user():
     driver.find_element("xpath", "(//input[@type='tel'])[3]").send_keys("1")
     driver.find_element("xpath", "(//input[@type='tel'])[4]").send_keys("1")
     sleep(7)
-    uname = "یوزر تست وب 12 مهر"
-    driver.find_element("xpath", "//input[contains(@class,'w-full rounded-lg')]").send_keys(uname)
+    display_name_input = driver.find_element("xpath", "//input[contains(@class,'w-full rounded-lg')]")
+    display_name_input.send_keys(userName)
     driver.find_element("xpath","//h6[text()='تأييد']").click()
     sleep(5)
     dom = driver.page_source
-    assert uname in dom
+    assert userName in dom
 
 
 
-def sign_in_tashakol():
+def sign_in_tashakol(phoneNumber,userName):
     driver.implicitly_wait(5)
     driver.get("https://hnaya.ir/")
-    driver.set_window_size(400, 890)
+    driver.set_window_size(400, 1050)
     sleep(3)
-    driver.find_element("xpath", "(//p[@class='title2 pt-1 '])[3]").click()
+    profile_page = driver.find_element("xpath","(//p[@class='title2 pt-1 '])[3]")
+    profile_page.click()
     sleep(7)
-    driver.find_element("xpath","//button[text()='مجموعة']").click()
+    tashakol_select_btn = driver.find_element("xpath","//button[text()='مجموعة']")
+    tashakol_select_btn.click()
     sleep(1)
     phone_input = driver.find_element("tag name", "input")
     phone_input.click()
@@ -119,10 +125,10 @@ def sign_in_tashakol():
     phone_input.send_keys(Keys.BACKSPACE)
     phone_input.send_keys(Keys.BACKSPACE)
     sleep(2)
-    phone_number = "89196549827"
-    phone_input.send_keys(phone_number)
+    phone_input.send_keys(phoneNumber)
     sleep(1)
-    driver.find_element("tag name", "h6").click()
+    send_code_btn = driver.find_element("tag name","h6")
+    send_code_btn.click()
     sleep(1)
     driver.find_element("xpath", "//h6[text()='استمر']").click()
     sleep(2)
@@ -131,12 +137,12 @@ def sign_in_tashakol():
     driver.find_element("xpath", "(//input[@type='tel'])[3]").send_keys("1")
     driver.find_element("xpath", "(//input[@type='tel'])[4]").send_keys("1")
     sleep(7)
-    uname = "تشکل تست وب 12 مهر"
-    driver.find_element("xpath","//input[contains(@class,'w-full rounded-lg')]").send_keys(uname)
+    display_name_input = driver.find_element("xpath", "//input[contains(@class,'w-full rounded-lg')]")
+    display_name_input.send_keys(userName)
     driver.find_element("xpath","//h6[text()='تأييد']").click()
     sleep(5)
     dom = driver.page_source
-    assert uname in dom
+    assert userName in dom
 
 def create_request():
     driver.implicitly_wait(5)
@@ -445,5 +451,5 @@ def create_project():
     dom = driver.page_source
     assert title in dom
 
-create_request()
+login_user("89155608057","یوزر تست وب 12 مهر 2")
 
