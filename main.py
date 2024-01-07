@@ -1,13 +1,14 @@
 import os
 from selenium import webdriver
 from time import sleep
-
+from selenium.webdriver.common.alert import Alert
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 os.environ['PATH'] += r"C:\chromedriver-win64"
 driver = webdriver.Chrome()
 actions = ActionChains(driver)
+alert = Alert(driver)
 
 def login_user(phoneNumber,userName):
     driver.implicitly_wait(5)
@@ -300,7 +301,7 @@ def create_project(phoneNumber,projectTitle):
     driver.find_element("xpath","(//input[@type='tel'])[2]").send_keys("1")
     driver.find_element("xpath","(//input[@type='tel'])[3]").send_keys("1")
     driver.find_element("xpath","(//input[@type='tel'])[4]").send_keys("1")
-    sleep(6)
+    sleep(15)
     create_project_page = driver.find_element("xpath","//a[@href='/fa/create-form']")
     create_project_page.click()
     sleep(7)
@@ -463,4 +464,43 @@ def create_project(phoneNumber,projectTitle):
     dom = driver.page_source
     assert projectTitle in dom
 
-create_project("9196549840","پروژه تست وب 13 آبان")
+
+def create_project_setad(phoneNumber,projectTitle):
+    driver.implicitly_wait(5)
+    driver.get("https://dashboard.hnaya.ir/login")
+    driver.set_window_size(1920,1080)
+    sleep(3)
+    username= driver.find_element("name","username")
+    username.send_keys("my admin")
+    sleep(0.5)
+    password= driver.find_element("name","password")
+    password.send_keys("kashi24M")
+    sleep(7)
+    enterkey=driver.find_element("tag name","button")
+    enterkey.click()
+    sleep(4)
+    projectsection= driver.find_element("xpath","//div[contains(@class,'MuiAccordionSummary-content MuiAccordionSummary-contentGutters')]")
+    projectsection.click()
+    sleep(1)
+    pendingprojects= driver.find_element("xpath","//p[text()='ایجاد پروژه']")
+    pendingprojects.click()
+    sleep(3)
+    pic=driver.find_element("xpath","//p[text()='انتخاب عکس']")
+    pic.click()
+    sleep(17)
+    title= driver.find_element("name","title")
+    title.send_keys(projectTitle)
+    sleep(0.5)
+    phone= driver.find_element("name","phoneNumber")
+    phone.send_keys("+98"+phoneNumber)
+    sleep(0.5)
+    needs= driver.find_element("xpath","//p[text()='نیازمندی های پروژه']")
+    needs.click()
+    sleep(1)
+    financil= driver.find_element("xpath","//p[text()='مالی']")
+    financil.click()
+    sleep(0.5)
+    money= driver.find_element("xpath","//input[@type='number']")
+    money.send_keys("8500000000")
+
+create_project_setad("9196549874","تست")
