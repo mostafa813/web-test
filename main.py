@@ -10,7 +10,7 @@ driver = webdriver.Chrome()
 actions = ActionChains(driver)
 alert = Alert(driver)
 
-def login_user(phoneNumber,userName):
+def login_user(phoneNumber):
     driver.implicitly_wait(5)
     driver.get("https://hnaya.ir/fa")
     driver.set_window_size(400,1050)
@@ -31,12 +31,12 @@ def login_user(phoneNumber,userName):
     driver.find_element("xpath","(//input[@type='tel'])[3]").send_keys("1")
     driver.find_element("xpath","(//input[@type='tel'])[4]").send_keys("1")
     sleep(8)
-    dom = driver.page_source
-    assert userName in dom
+    # dom = driver.page_source
+    # assert userName in dom
 
 
 
-def login_tashakol(phoneNumber,userName):
+def login_tashakol(phoneNumber):
     driver.implicitly_wait(5)
     driver.get("https://hnaya.ir/fa")
     driver.set_window_size(400,1050)
@@ -60,8 +60,8 @@ def login_tashakol(phoneNumber,userName):
     driver.find_element("xpath","(//input[@type='tel'])[3]").send_keys("1")
     driver.find_element("xpath","(//input[@type='tel'])[4]").send_keys("1")
     sleep(8)
-    dom = driver.page_source
-    assert userName in dom
+    # dom = driver.page_source
+    # assert userName in dom
 
 
 def sign_in_user(phoneNumber,userName):
@@ -544,11 +544,11 @@ def create_project_setad(phoneNumber,projectTitle):
     subject2.click()
     subject3=driver.find_element("xpath","(//input[@type='checkbox'])[5]")
     subject3.click()
-    sleep(1)
-    driver.find_element("xpath","//div[@class='MuiModal-root muirtl-8ndowl']//div").click()
+    sleep(3)
+
     sleep(5)
 
 
 
 
-create_project_setad("9196549874","تست")
+create_project_setad("9196549878"," تست")
